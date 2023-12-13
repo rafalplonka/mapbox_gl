@@ -259,6 +259,12 @@ class MapboxMapController extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> updateMapOptions(Map<String, dynamic> optionsUpdate) async {
+    _disposeGuard();
+    _cameraPosition = await _mapboxGlPlatform.updateMapOptions(optionsUpdate);
+    notifyListeners();
+  }
+
   /// Triggers a resize event for the map on web (ignored on Android or iOS).
   ///
   /// Checks first if a resize is required or if it looks like it is already correctly resized.
