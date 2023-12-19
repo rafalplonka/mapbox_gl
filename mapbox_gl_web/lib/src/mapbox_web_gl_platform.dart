@@ -194,29 +194,36 @@ class MapboxWebGlPlatform extends MapboxGlPlatform
     return _getCameraPosition();
   }
 
-  // @override
-  // Future<bool?> animateCamera(CameraUpdate cameraUpdate,
-  //     {Duration? duration}) async {
-  //   final cameraOptions = Convert.toCameraOptions(cameraUpdate, _map);
+  @override
+  Future<bool?> animateCamera(CameraUpdate cameraUpdate,
+      {Duration? duration}) async {
+    final cameraOptions = Convert.toCameraOptions(cameraUpdate, _map);
 
-  //   final bearing = cameraOptions.bearing;
-  //   final center = cameraOptions.center;
-  //   final pitch = cameraOptions.pitch;
-  //   final zoom = cameraOptions.zoom;
-  //   final around = cameraOptions.around;
+    final bearing = cameraOptions.bearing;
+    final center = cameraOptions.center;
+    final pitch = cameraOptions.pitch;
+    final zoom = cameraOptions.zoom;
 
-  //   _map.flyTo({
-  //     if (bearing != null) 'bearing': bearing,
-  //     if (center != null && center.jsObject != null)
-  //       'center': [center.lng, center.lat],
-  //     if (around != null) 'around': around,
-  //     if (pitch != null) 'pitch': pitch,
-  //     if (zoom != null) 'zoom': zoom,
-  //     if (duration != null) 'duration': duration.inMilliseconds,
-  //   });
+    print(center);
+    print(center.jsObject);
+    print(center.lng);
+    print(center.lat);
+      
+    try {
+     _map.flyTo({
+          if (bearing != null) 'bearing': bearing,
+          if (center != null)
+            'center': [center.lng, center.lat],
+          if (pitch != null) 'pitch': pitch,
+          if (zoom != null) 'zoom': zoom,
+          if (duration != null) 'duration': duration.inMilliseconds,
+      });
+    } catch (e) {
+      print(e);
+    }
 
-  //   return true;
-  // }
+    return true;
+  }
 
   @override
   Future<bool?> animateCamera(CameraUpdate cameraUpdate,
