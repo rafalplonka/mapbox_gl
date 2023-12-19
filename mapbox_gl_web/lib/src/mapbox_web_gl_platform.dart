@@ -226,19 +226,6 @@ class MapboxWebGlPlatform extends MapboxGlPlatform
   }
 
   @override
-  Future<bool?> animateCamera(CameraUpdate cameraUpdate,
-      {Duration? duration}) async {
-    final cameraOptions = Convert.toCameraOptions(cameraUpdate, _map);
-
-    _map.flyTo({
-      ...cameraOptions,
-      if (duration != null) 'duration': duration.inMilliseconds,
-    });
-
-    return true;
-  }
-
-  @override
   Future<bool?> moveCamera(CameraUpdate cameraUpdate) async {
     final cameraOptions = Convert.toCameraOptions(cameraUpdate, _map);
     _map.jumpTo(cameraOptions);
