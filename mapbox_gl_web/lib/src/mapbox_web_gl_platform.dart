@@ -223,8 +223,12 @@ class MapboxWebGlPlatform extends MapboxGlPlatform
       {Duration? duration}) async {
     final cameraOptions = Convert.toCameraOptions(cameraUpdate, _map);
 
-    _map.flyTo({
-      ...cameraOptions,
+    _map.flyTo(<String, dynamic>{
+      'center': cameraOptions.center,
+      'around': cameraOptions.around,
+      'bearing': cameraOptions.bearing,
+      'pitch': cameraOptions.pitch,
+      'zoom': cameraOptions.zoom,
       if (duration != null) 'duration': duration.inMilliseconds,
     });
 
